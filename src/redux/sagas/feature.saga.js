@@ -14,3 +14,5 @@ function* featureSaga() {
         console.log('error in featureSaga')
     }
 }
+
+export default featureSaga;
