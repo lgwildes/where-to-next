@@ -54,34 +54,76 @@ function Features() {
             <h3>what surrounds you?</h3>
                   {/* TODO loop through each DB category and render buttons */}
                 {/* TODO on click change button color */}
-                <Button 
-                onClick={(event) => addFeatureId(1)}
-                variant="outlined"
-                size="small"
-                value="1"
-                >mountains</Button>
+                {features.map(feature => {
+                if(feature.category_id === 2){
+                    return(
+                        <Button 
+                        onClick={(event) => addFeatureId(feature.id)}
+                        key={feature.id}
+                        variant="outlined"
+                        size="small"
+                        value="{feature.id}"
+                        >{feature.name}</Button>
+                    )
+                }
+                else{
+                    return(
+                        <div></div>
+                    )
+                }
+               
+               })}
+               
             </Grid2>
             <Grid2>
             <h3>what are you up to?</h3>
                   {/* TODO loop through each DB category and render buttons */}
                 {/* TODO on click change button color */}
-                <Button 
-                onClick={(event) => addFeatureId(1)}
-                variant="outlined"
-                size="small"
-                value="1"
-                >hiking</Button>
+                {features.map(feature => {
+                if(feature.category_id === 3){
+                    return(
+                        <Button 
+                        onClick={(event) => addFeatureId(feature.id)}
+                        key={feature.id}
+                        variant="outlined"
+                        size="small"
+                        value="{feature.id}"
+                        >{feature.name}</Button>
+                    )
+                }
+                else{
+                    return(
+                        <div></div>
+                    )
+                }
+               
+               })}
+               
             </Grid2>
             <Grid2>
             <h3>how do you have fun?</h3>
                   {/* TODO loop through each DB category and render buttons */}
                 {/* TODO on click change button color */}
-                <Button 
-                onClick={(event) => addFeatureId(1)}
-                variant="outlined"
-                size="small"
-                value="1"
-                >theme park</Button>
+                {features.map(feature => {
+                if(feature.category_id === 4){
+                    return(
+                        <Button 
+                        onClick={(event) => addFeatureId(feature.id)}
+                        key={feature.id}
+                        variant="outlined"
+                        size="small"
+                        value="{feature.id}"
+                        >{feature.name}</Button>
+                    )
+                }
+                else{
+                    return(
+                        <div></div>
+                    )
+                }
+               
+               })}
+               
             </Grid2>
 
 
