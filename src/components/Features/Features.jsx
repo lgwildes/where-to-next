@@ -5,13 +5,14 @@ import FormGroup from '@mui/material/FormGroup';
 import { FormControlLabel } from '@mui/material';
 import { Dispatch, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function Features() {
 
     const [international, setInternational] = useState(false);
     const [domestic, setDomestic] = useState(false);
 
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const features = useSelector(store => store.featureReducer)
     const addedFeatures = useSelector(store => store.addFeatureReducer)
@@ -29,6 +30,7 @@ function Features() {
             type:'ADD_FEATURE',
             payload: featureId
         })
+        history.push('')
       
     }
 
