@@ -26,9 +26,6 @@ function SearchPage() {
         {/* Display chips by rendering an array of chips */}
       </div>
       <div>
-        <International />
-      </div>
-      <div>
         <Features />
       </div>
     

@@ -1,10 +1,15 @@
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Button } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import { FormControlLabel } from '@mui/material';
 import { Dispatch, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Features() {
 
+    const [international, setInternational] = useState('FALSE');
+    const [domestic, setdomestic] = useState('FALSE');
     const dispatch = useDispatch();
     const features = useSelector(store => store.featureReducer)
     useEffect(() => {
@@ -24,6 +29,16 @@ function Features() {
 
 
     return (
+       <>
+        <FormGroup>
+            <FormControlLabel 
+            control={<Checkbox  />} 
+            label="domestic (U.S.)" />
+            <FormControlLabel 
+            control={<Checkbox  />} 
+            label="international" />
+        </FormGroup>
+
         <Grid2 container spacing={2}>
             <Grid2>
                 <h3>who's going?</h3>
@@ -128,6 +143,8 @@ function Features() {
 
 
         </Grid2>
+
+        </>
     )
 }
 
