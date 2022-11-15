@@ -1,17 +1,17 @@
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Button } from '@mui/material';
 import { Dispatch, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Features() {
 
+    const dispatch = useDispatch();
+    const features = useSelector(store => store.featureReducer)
     useEffect(() => {
         dispatch({
             type: 'FETCH_FEATURES'
         })
     },[]);
-
-   const dispatch = useDispatch();
 
     const addFeatureId = (featureId) => {
         console.log('adding feature with id of ', featureId );
@@ -29,12 +29,26 @@ function Features() {
                 <h3>who's going?</h3>
                 {/* TODO loop through each DB category and render buttons */}
                 {/* TODO on click change button color */}
-                <Button 
-                onClick={(event) => addFeatureId(1)}
-                variant="outlined"
-                size="small"
-                value="1"
-                >solo</Button>
+               {features.map(feature => {
+                if(feature.category_id === 1){
+                    return(
+                        <Button 
+                        onClick={(event) => addFeatureId(feature.id)}
+                        key={feature.id}
+                        variant="outlined"
+                        size="small"
+                        value="{feature.id}"
+                        >{feature.name}</Button>
+                    )
+                }
+                else{
+                    return(
+                        <div></div>
+                    )
+                }
+               
+               })}
+               
             </Grid2>
             <Grid2>
             <h3>what surrounds you?</h3>
