@@ -9,9 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 function Features() {
 
     const [international, setInternational] = useState('FALSE');
-    const [domestic, setdomestic] = useState('FALSE');
+    const [domestic, setDomestic] = useState('FALSE');
+
+
     const dispatch = useDispatch();
     const features = useSelector(store => store.featureReducer)
+    const addedFeatures = useSelector(store => store.addFeatureReducer)
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_FEATURES'
@@ -27,22 +31,43 @@ function Features() {
       
     }
 
+    // set domestic state to true if false, and false if true. 
+    const handleDomesticCheckbox = () => {
+        setDomestic(!domestic);
+    }
+    // set international state to true if false, and false if true. 
+    const handleInternationalCheckbox = () => {
+        setInternational(!international);
+    }
+
+    const submitPreferences = () => {
+        console.log(`submitting preferences 🌴, 
+        domestic: ${domestic}, 
+        international: ${international},
+        features: ${addedFeatures}
+         `)
+
+        
+
+    }
+
 
     return (
        <>
         <FormGroup>
             <FormControlLabel 
-            control={<Checkbox  />} 
+            control={<Checkbox 
+                        onChange={handleDomesticCheckbox} />} 
             label="domestic (U.S.)" />
             <FormControlLabel 
-            control={<Checkbox  />} 
+            control={<Checkbox 
+                        onChange={handleInternationalCheckbox} />} 
             label="international" />
         </FormGroup>
 
         <Grid2 container spacing={2}>
             <Grid2>
                 <h3>who's going?</h3>
-                {/* TODO loop through each DB category and render buttons */}
                 {/* TODO on click change button color */}
                {features.map(feature => {
                 if(feature.category_id === 1){
@@ -139,6 +164,11 @@ function Features() {
                
                })}
                
+            </Grid2>
+            <Grid2>
+                <Button
+                onClick={submitPreferences}
+                variant="contained">find my destinations! ✈️</Button>
             </Grid2>
 
 

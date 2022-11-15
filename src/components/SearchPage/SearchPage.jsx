@@ -6,7 +6,6 @@ import { useState } from 'react';
 // import MUI elements
 
 //import components
-import International from '../International/International';
 import Features from '../Features/Features';
 
 function SearchPage() {
