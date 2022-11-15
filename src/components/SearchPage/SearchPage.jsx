@@ -9,7 +9,7 @@ import { useState } from 'react';
 import International from '../International/International';
 import Features from '../Features/Features';
 
-function UserPage() {
+function SearchPage() {
 
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -38,4 +38,4 @@ function UserPage() {
 }
 
 // this allows us to use <App /> in index.js
-export default UserPage;
+export default SearchPage;
