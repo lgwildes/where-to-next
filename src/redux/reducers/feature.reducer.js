@@ -1,5 +1,5 @@
 
-const addFeature = (state = [], action) => {
+const featureReducer = (state = [], action) => {
     switch(action.type){
         case 'ADD_FEATURE':
             return [...state, action.payload];
@@ -8,4 +8,4 @@ const addFeature = (state = [], action) => {
     }
 }
 
-export default addFeature;
+export default featureReducer;
