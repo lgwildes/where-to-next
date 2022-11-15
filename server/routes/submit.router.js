@@ -11,6 +11,8 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
+  let preferences = req.query
+  console.log('preferences', preferences)
      
 });
 
