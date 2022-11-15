@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Features() {
 
-    const [international, setInternational] = useState('FALSE');
-    const [domestic, setDomestic] = useState('FALSE');
+    const [international, setInternational] = useState(false);
+    const [domestic, setDomestic] = useState(false);
 
 
     const dispatch = useDispatch();
@@ -23,6 +23,7 @@ function Features() {
     },[]);
 
     const addFeatureId = (featureId) => {
+     
         console.log('adding feature with id of ', featureId );
         dispatch({
             type:'ADD_FEATURE',
@@ -41,11 +42,24 @@ function Features() {
     }
 
     const submitPreferences = () => {
+        if (international && domestic === 'FALSE'){
+            alert('Please select your international and domestic preference!')
+        }
         console.log(`submitting preferences 🌴, 
         domestic: ${domestic}, 
         international: ${international},
         features: ${addedFeatures}
          `)
+
+         dispatch({
+            type: 'SUBMIT_FEATURES',
+            payload: {
+                domestic: domestic, 
+                international: international,
+                features: addedFeatures
+            }
+
+         })
 
         
 
@@ -82,9 +96,7 @@ function Features() {
                     )
                 }
                 else{
-                    return(
-                        <div></div>
-                    )
+                    return
                 }
                
                })}
@@ -107,9 +119,7 @@ function Features() {
                     )
                 }
                 else{
-                    return(
-                        <div></div>
-                    )
+                    return
                 }
                
                })}
@@ -132,9 +142,7 @@ function Features() {
                     )
                 }
                 else{
-                    return(
-                        <div></div>
-                    )
+                    return
                 }
                
                })}
@@ -157,9 +165,7 @@ function Features() {
                     )
                 }
                 else{
-                    return(
-                        <div></div>
-                    )
+                    return
                 }
                
                })}
