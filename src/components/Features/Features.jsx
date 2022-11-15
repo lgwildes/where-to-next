@@ -36,6 +36,39 @@ function Features() {
                 value="1"
                 >solo</Button>
             </Grid2>
+            <Grid2>
+            <h3>what surrounds you?</h3>
+                  {/* TODO loop through each DB category and render buttons */}
+                {/* TODO on click change button color */}
+                <Button 
+                onClick={(event) => addFeatureId(1)}
+                variant="outlined"
+                size="small"
+                value="1"
+                >mountains</Button>
+            </Grid2>
+            <Grid2>
+            <h3>what are you up to?</h3>
+                  {/* TODO loop through each DB category and render buttons */}
+                {/* TODO on click change button color */}
+                <Button 
+                onClick={(event) => addFeatureId(1)}
+                variant="outlined"
+                size="small"
+                value="1"
+                >hiking</Button>
+            </Grid2>
+            <Grid2>
+            <h3>how do you have fun?</h3>
+                  {/* TODO loop through each DB category and render buttons */}
+                {/* TODO on click change button color */}
+                <Button 
+                onClick={(event) => addFeatureId(1)}
+                variant="outlined"
+                size="small"
+                value="1"
+                >theme park</Button>
+            </Grid2>
 
 
         </Grid2>
