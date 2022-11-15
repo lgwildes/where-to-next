@@ -7,6 +7,15 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
+  const sqlText = `SELECT * FROM "feature";`;
+  pool.query(sqlText)
+    .then( dbResult => {
+        res.send(dbResult.rows);
+    })
+    .catch( error => {
+        console.log('error in feature.router GET', error)
+        res.sendStatus(500);
+    })
 });
 
 /**
