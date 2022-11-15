@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 //import components
 import International from '../International/International';
+import Features from '../Features/Features';
 
 function UserPage() {
 
@@ -27,6 +28,10 @@ function UserPage() {
       <div>
         <International />
       </div>
+      <div>
+        <Features />
+      </div>
+    
 
     </div>
   );
