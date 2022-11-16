@@ -10,7 +10,7 @@ function* submit(action) {
         })
 
     } catch (error) {
-        console.log('Error submitting user preferences', error)
+        console.log('❌Error in submit.saga submitting user preferences', error)
     }
 }
 

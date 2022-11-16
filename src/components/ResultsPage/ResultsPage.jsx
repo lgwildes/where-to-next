@@ -6,19 +6,35 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2'; 
 
+import { FavoriteBorder, FavoriteBorderOutlined } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+
+
 
 function ResultsPage() {
+
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({
             type: 'FETCH_RESULTS'
         })
-    },[results])
+    },[])
 
     const results = useSelector(store => store.resultReducer.data)
     console.log('🗺️results from store are', results)
-   
-    if(results.length > 0) {
+    
+  function addFavorite(destinationId) {
+    console.log('I added a favorite!')
+    dispatch({
+        type:'ADD_FAVORITE',
+        payload: destinationId
+    })
+  }
+        
+    
+
+    if(results) {
 
         return (
             <>
@@ -30,7 +46,7 @@ function ResultsPage() {
                 {results.map(destination => {
                     return(
                         <Grid2> 
-                            <Card sx={{width:500, height:260, m:2, boxShadow:3}}>
+                            <Card sx={{width:500, height:300, m:2, boxShadow:3}}>
                                 <CardMedia
                                     component="img"
                                     height="120"
@@ -40,6 +56,11 @@ function ResultsPage() {
                                     <div key={destination.id}>
                                     <h4>{destination.name}</h4>
                                     <p>{destination.description}</p>
+                                    <IconButton>
+                                        <FavoriteBorderOutlined 
+                                        onClick={(event) => addFavorite(destination.id)} />
+                                    </IconButton>
+                                   
                                 </div>
                             </Card>
                         </Grid2>
