@@ -19,6 +19,7 @@ import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ResultsPage from '../ResultsPage/ResultsPage';
 
 import './App.css';
 
@@ -64,7 +65,7 @@ function App() {
           // logged in shows results after submitting search
             exact
             path="/results">
-
+              <ResultsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
