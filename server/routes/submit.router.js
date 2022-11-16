@@ -6,9 +6,8 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
+
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   let preferences = req.query
@@ -41,14 +40,49 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
     // console.log('🥳variablePlaceholders to insert into query', variablePlaceholders)
 
-    // sqlText to insert into query with variable placeholders for feature ids
-    let sqlText =  `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
-    JOIN destination_feature ON destination_id = destination.id
-    WHERE feature_id IN(${variablePlaceholders})
-    GROUP BY "destination"."id"
-    ORDER BY "destination".id
-    ;`
 
+    // sqlText to insert into query with variable placeholders for feature ids
+    let sqlText ;
+
+    sqlText =  `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+            JOIN destination_feature ON destination_id = destination.id
+            WHERE feature_id IN(${variablePlaceholders})
+            GROUP BY "destination"."id"
+            ORDER BY "destination".id
+            ;`
+    
+   
+        // search for INTERNATIONAL and DOMESTIC
+        if (preferences.domestic == true && preferences.international == true) {
+            sqlText =  `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+            JOIN destination_feature ON destination_id = destination.id
+            WHERE feature_id IN(${variablePlaceholders})
+            GROUP BY "destination"."id"
+            ORDER BY "destination".id
+            ;`
+            console.log('Whole world 🌐')
+        } 
+            // search for ONLY INTERNATIONAL
+            if (preferences.domestic == false){
+                sqlText = `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+                JOIN destination_feature ON destination_id = destination.id
+                WHERE feature_id IN(${variablePlaceholders}) AND "international" = TRUE
+                GROUP BY "destination"."id"
+                ORDER BY "destination".id
+                ;`
+                console.log('only international 🏴󠁧󠁢󠁥󠁮󠁧󠁿')
+            }   
+                // search for ONLY DOMESTIX
+                else if (preferences.international == false) {
+                    sqlText = `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+                    JOIN destination_feature ON destination_id = destination.id
+                    WHERE feature_id IN(${variablePlaceholders}) AND "international" = FALSE
+                    GROUP BY "destination"."id"
+                    ORDER BY "destination".id
+                    ;`
+                    console.log('AMERICA 🗽')
+                }
+    
     console.log('My sqlText is...', sqlText);
     
     // params for the query!

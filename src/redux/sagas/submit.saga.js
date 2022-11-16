@@ -1,9 +1,13 @@
 import axios from "axios";
-import {takeEvery} from 'redux-saga/effects';
+import {takeEvery, put} from 'redux-saga/effects';
 
 function* submit(action) {
     try{
         const response = yield axios.get(`/api/submit/`, {params: action.payload})
+        yield put({
+            type:'SET_RESULTS',
+            payload: response
+        })
 
     } catch (error) {
         console.log('Error submitting user preferences', error)
