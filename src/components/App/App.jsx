@@ -61,6 +61,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+          // logged in shows results after submitting search
+            exact
+            path="/results">
+
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows FavoritesPage else shows LoginPage
             exact
             path="/favorites"

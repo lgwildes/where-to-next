@@ -30,7 +30,7 @@ function Features() {
             type:'ADD_FEATURE',
             payload: featureId
         })
-        history.push('')
+        
       
     }
 
@@ -44,24 +44,29 @@ function Features() {
     }
 
     const submitPreferences = () => {
-        if (international && domestic === 'FALSE'){
+        if (international === false && domestic === false){
+            console.log('ALERT TEST)')
             alert('Please select your international and domestic preference!')
         }
-        console.log(`submitting preferences 🌴, 
-        domestic: ${domestic}, 
-        international: ${international},
-        features: ${addedFeatures}
-         `)
-
-         dispatch({
-            type: 'SUBMIT_FEATURES',
-            payload: {
-                domestic: domestic, 
-                international: international,
-                features: addedFeatures
-            }
-
-         })
+        else if(international === true || domestic === true){
+            console.log(`submitting preferences 🌴, 
+            domestic: ${domestic}, 
+            international: ${international},
+            features: ${addedFeatures}
+             `)
+    
+                dispatch({
+                    type: 'SUBMIT_FEATURES',
+                    payload: {
+                        domestic: domestic, 
+                        international: international,
+                        features: addedFeatures
+                    }
+    
+                })
+                history.push('/results')
+        }
+       
 
         
 
