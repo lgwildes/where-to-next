@@ -46,15 +46,17 @@ function ResultsPage() {
                     justifyContent="center">
                 {results.map(destination => {
                     return(
-                        <Grid2> 
-                            <Card sx={{width:500, height:300, m:2, boxShadow:3}}>
+                        <Grid2 
+                        key={destination.id}> 
+                            <Card sx={{width:500, height:300, m:2, boxShadow:3}}
+                                >
                                 <CardMedia
                                     component="img"
                                     height="120"
                                     image="https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //TODO get photos from DB
                                     alt="image description" //TODO get alt_text from DB
                                     />
-                                    <div key={destination.id}>
+                                    <div >
                                     <h4>{destination.name}</h4>
                                     <p>{destination.description}</p>
                                     <IconButton onClick={(event) => addFavorite(destination.id)} >

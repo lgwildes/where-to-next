@@ -9,17 +9,30 @@ const {
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  console.log('GET favorites')
+  
     
   
 
 });
 
-/**
- * POST route template
- */
+
+
+// Add destinationt to favorite table 
 router.post('/', (req, res) => {
   console.log('req.body is',req.body)
+
+  sqlText = `INSERT INTO "public"."favorite"("user_id", "destination_id") 
+            VALUES($1, $2);`
+  sqlParams = [req.user.id, req.body.id]
+
+  pool.query(sqlText, sqlParams)
+    .then(() => res.sendStatus(201))
+    .catch((error ) => {
+      console.log('Error in favorites.router adding to favorites', error)
+      res.sendStatus(500);
+    })
+
   
 });
 
