@@ -25,10 +25,11 @@ function ResultsPage() {
     console.log('🗺️results from store are', results)
     
   function addFavorite(destinationId) {
-    console.log('I added a favorite!')
     dispatch({
         type:'ADD_FAVORITE',
-        payload: destinationId
+        payload: {
+            id: destinationId
+        }
     })
   }
         
@@ -56,9 +57,9 @@ function ResultsPage() {
                                     <div key={destination.id}>
                                     <h4>{destination.name}</h4>
                                     <p>{destination.description}</p>
-                                    <IconButton>
+                                    <IconButton onClick={(event) => addFavorite(destination.id)} >
                                         <FavoriteBorderOutlined 
-                                        onClick={(event) => addFavorite(destination.id)} />
+                                        />
                                     </IconButton>
                                    
                                 </div>

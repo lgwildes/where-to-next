@@ -11,8 +11,7 @@ const {
 router.get('/', (req, res) => {
   // GET route code here
     
-  //TODO multiple queries? GET photo by destination id, 
-  //GET destination_features by id
+  
 
 });
 
@@ -20,7 +19,8 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  console.log('req.body is',req.body)
+  
 });
 
 module.exports = router;
