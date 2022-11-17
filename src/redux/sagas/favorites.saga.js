@@ -11,8 +11,23 @@ function* addFavorite(action) {
     }
 }
 
+function* fetchFavorites(action) {
+    try{
+        console.log('getting favorites for', action.payload)
+        const favorites = yield axios.get(`/api/favorites`, {params: action.payload})
+        console.log('my favorites!', favorites.data)
+        yield put ({
+            type: 'SET_FAVORITES',
+            payload: favorites.data
+        })
+    } catch(error) {
+        console.log('❌Error in favorites.saga fetching favorites', error)
+    }
+}
+
 function* addFavoriteSaga() {
     yield takeEvery('ADD_FAVORITE', addFavorite)
+    yield takeEvery('FETCH_FAVORITES', fetchFavorites)
 }
 
 export default addFavoriteSaga;

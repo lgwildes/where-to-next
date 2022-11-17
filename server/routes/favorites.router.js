@@ -9,10 +9,22 @@ const {
  * GET route template
  */
 router.get('/', (req, res) => {
-  console.log('GET favorites')
-  
+  console.log('GET favorites for user', req.query) //req.query = {id: , username: }
+
+  sqlText = `SELECT "favorite".id, "name", "description", "notes" FROM "favorite"
+              JOIN "destination" ON "destination".id = "favorite".destination_id
+            WHERE "user_id" = $1;
+  `
     
-  
+  sqlParams = [req.query.id]
+
+  pool.query(sqlText, sqlParams)
+    .then((dbResult) => {
+      res.send(dbResult.rows)
+    })
+    .catch((error) => {
+      console.log('❌Error getting favorites', error)
+    })
 
 });
 

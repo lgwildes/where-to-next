@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Card from '@mui/material/Card';
@@ -12,9 +12,8 @@ import { IconButton } from '@mui/material';
 
 
 function ResultsPage() {
-
-
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_RESULTS'
@@ -56,7 +55,6 @@ function ResultsPage() {
                                     image="https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //TODO get photos from DB
                                     alt="image description" //TODO get alt_text from DB
                                     />
-                                    <div >
                                     <h4>{destination.name}</h4>
                                     <p>{destination.description}</p>
                                     <IconButton onClick={(event) => addFavorite(destination.id)} >
@@ -64,7 +62,6 @@ function ResultsPage() {
                                         />
                                     </IconButton>
                                    
-                                </div>
                             </Card>
                         </Grid2>
                     )
