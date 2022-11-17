@@ -52,14 +52,16 @@ function FavoritesPage() {
   // Edit note state
   const [ note, setNote ] = useState('');
   // handle on submit of note edit
-  function updateNote() {
+  function updateNote(favoriteId) {
     handleClose();
     dispatch({
       type:'EDIT_NOTE',
       payload: {
-        note: note
+        note: note,
+        favoriteId: favoriteId
       }
     })
+    // TODO GET notes 
   }
 
   if (favorites) {
@@ -101,7 +103,7 @@ function FavoritesPage() {
                         rows={4}
                         placeholder="write a note..."
                          />
-                      <IconButton onClick={updateNote}>
+                      <IconButton onClick={(event) => updateNote(destination.id)}>
                         <Check />
                       </IconButton>
                     </Box>

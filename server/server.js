@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const featureRouter = require('./routes/feature.router');
 const submitRouter = require('./routes/submit.router');
 const favoritesRouter = require('./routes/favorites.router');
+const noteRouter = require('./routes/note.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/features', featureRouter)
 app.use('/api/submit', submitRouter)
 app.use('/api/favorites', favoritesRouter)
+app.use('/api/note', noteRouter)
 
 // Serve static files
 app.use(express.static('build'));
