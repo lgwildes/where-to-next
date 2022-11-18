@@ -5,10 +5,9 @@ const router = express.Router();
 const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
+
+
+router.get('/', rejectUnauthenticated,(req, res) => {
   console.log('GET favorites for user', req.query) //req.query = {id: , username: }
 
   sqlText = `SELECT "favorite".id AS favorite_id, "name", "description", "notes" FROM "favorite"
@@ -32,7 +31,7 @@ router.get('/', (req, res) => {
 
 
 // Add destinationt to favorite table 
-router.post('/', (req, res) => {
+router.post('/',rejectUnauthenticated, (req, res) => {
   console.log('req.body is',req.body)
 
   sqlText = `INSERT INTO "public"."favorite"("user_id", "destination_id") 
