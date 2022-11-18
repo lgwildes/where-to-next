@@ -6,7 +6,7 @@ function* editNote(action) {
     try{
        console.log('😱action.payload is....',action.payload)
 
-        yield axios.put('/api/note/', {params: action.payload})
+        yield axios.put('/api/note/', action.payload)
         
     } catch(error){
         console.log('❌error editing note', error);

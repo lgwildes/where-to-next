@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2';
-import { FavoriteBorder, FavoriteBorderOutlined, Edit, Check, Note } from '@mui/icons-material';
+import { FavoriteBorder, FavoriteBorderOutlined, Edit, Check,  Note } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -28,6 +28,7 @@ function FavoritesPage() {
       type: 'FETCH_FAVORITES',
       payload: currentUser
     })
+
     dispatch({
       type: 'GET_FAVORITES',
     })
@@ -35,7 +36,14 @@ function FavoritesPage() {
 
   // Modal state and styles
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  //   dispatch({
+  //     type: 'SET_ACTIVE_FAVORITE',
+
+  //   })
+  // }
   const handleClose = () => setOpen(false);
   const style = {
     position: 'absolute',
@@ -53,6 +61,7 @@ function FavoritesPage() {
   const [ note, setNote ] = useState('');
   // handle on submit of note edit
   function updateNote(favoriteId) {
+    console.log(`my favorite id is ${favoriteId}`);
     handleClose();
     dispatch({
       type:'EDIT_NOTE',
@@ -64,7 +73,9 @@ function FavoritesPage() {
     // TODO GET notes 
   }
 
+ 
   if (favorites) {
+   
     return (
       <>
         <div className="container">
@@ -76,7 +87,7 @@ function FavoritesPage() {
           {favorites.map(destination => {
             return (
               <Grid2
-                key={destination.id}>
+                key={destination.favorite_id}>
                 <Card sx={{ width: 500, height: 400, m: 2, boxShadow: 3 }}>
                   <CardMedia
                     component="img"
@@ -84,11 +95,18 @@ function FavoritesPage() {
                     image="https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //TODO get photos from DB
                     alt="image description" //TODO get alt_text from DB
                   />
-                  <h4>{destination.name}</h4>
+                  <h4>{destination.name} with id of {destination.favorite_id}</h4>
                   <p>{destination.description}</p>
                   <h4>my notes</h4>
                   <p>{destination.notes}</p> 
-                  <IconButton onClick={(event) => handleOpen(destination.id)} > 
+                  {/* dispatch to new reducer for active favorited */}
+                  {/* <IconButton onClick={(event) => handleOpen(destination.favorite_id)} >  */}
+                  <IconButton onClick={(event) => {
+                     setOpen(true);
+                     dispatch({
+                       type: 'SET_ACTIVE_FAVORITE',
+                        payload: destination.favorite_id
+                     })}} > 
                     <Edit
                     />
                   </IconButton>
@@ -97,18 +115,23 @@ function FavoritesPage() {
                     onClose={handleClose}>
                     <Box sx={style}>
                       <TextField
-                        onChange={(event) => setNote(event.target.value)} 
+                      //UPDATE ACTIVE ON CHANGE
+                        onChange={(event) => dispatch({
+                          type: ''
+                        })} 
                         variant="outlined"
                         multiline
                         rows={4}
                         placeholder="write a note..."
+                        // add VALUE FIEL
                          />
-                      <IconButton onClick={(event) => updateNote(destination.id)}>
+                         {/* on submit saga  */}
+                      <IconButton onClick={() => updateNote(destination.favorite_id)}>
                         <Check />
                       </IconButton>
                     </Box>
                   </Modal>
-                  <IconButton onClick={(event) => deleteFavorite(destination.id)} > 
+                  <IconButton onClick={(event) => deleteFavorite(destination.favorite_id)} > 
                     <FavoriteBorderOutlined
                     />
                   </IconButton>

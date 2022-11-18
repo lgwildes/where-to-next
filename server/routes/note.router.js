@@ -22,9 +22,18 @@ router.put('/',rejectUnauthenticated, (req, res) => {
                     SET "notes" = $1
                     WHERE id = $2;`
     
-    const sqlParams = [req.query.note, req.query.id]
-    console.log('😢req.query is', req.query)
-    // console.log('🤺sqlParams are', sqlParams)
+    const sqlParams = [req.body.note, req.body.favoriteId]
+
+    pool.query(sqlText, sqlParams)
+        .then(()=> {
+            res.sendStatus(200)
+        })
+        .catch( error => {
+            console.log('error in note.router PUT', error)
+            res.sendStatus(500);
+        } )
+    
+    console.log('🤺sqlParams are', sqlParams)
 });
 
 module.exports = router;

@@ -57,7 +57,7 @@ function Features() {
     
                 dispatch({
                     type: 'SUBMIT_FEATURES',
-                    payload: {
+                    data: {
                         domestic: domestic, 
                         international: international,
                         features: addedFeatures

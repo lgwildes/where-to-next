@@ -11,7 +11,7 @@ const {
 router.get('/', (req, res) => {
   console.log('GET favorites for user', req.query) //req.query = {id: , username: }
 
-  sqlText = `SELECT "favorite".id, "name", "description", "notes" FROM "favorite"
+  sqlText = `SELECT "favorite".id AS favorite_id, "name", "description", "notes" FROM "favorite"
               JOIN "destination" ON "destination".id = "favorite".destination_id
             WHERE "user_id" = $1;
   `

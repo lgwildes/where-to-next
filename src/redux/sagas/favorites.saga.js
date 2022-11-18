@@ -25,9 +25,24 @@ function* fetchFavorites(action) {
     }
 }
 
+
+function* setActiveFavorite(action) {
+    try {
+       const response =  yield axios.get(`/favorites/${action.payload}`)
+        yield put({
+            type: 'SET_ACTIVE_STUDENT',
+            payload: response.data
+        })
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
 function* addFavoriteSaga() {
     yield takeEvery('ADD_FAVORITE', addFavorite)
     yield takeEvery('FETCH_FAVORITES', fetchFavorites)
+    yield takeEvery('SET_ACTIVE_FAVORITE', setActiveFavorite)
 }
 
 export default addFavoriteSaga;
