@@ -152,11 +152,24 @@ function FavoritesPage() {
                   </Modal>
 
                   {/* DELETE BUTTON */}
-                  <IconButton>
+                  <IconButton
+                  onClick={() => {
+                    // confirm('\nare you sure you want to remove this destination from your favorites?')
+                    dispatch({
+                      type:'DELETE_FAVORITE',
+                      payload: destination.favorite_id
+                    })
+                    dispatch({
+                      type: 'FETCH_FAVORITES',
+                      payload: currentUser
+                    })
+                
+                    dispatch({
+                      type: 'GET_FAVORITES',
+                    })
+                  }}>
                       <DeleteOutline
-                      onClick={() => {
-                        confirm('\nare you sure you want to remove this destination from your favorites?')
-                      }} />
+                       />
                   </IconButton>
 
 

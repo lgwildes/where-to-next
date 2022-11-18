@@ -30,7 +30,7 @@ router.get('/', rejectUnauthenticated,(req, res) => {
 
 
 
-// Add destinationt to favorite table 
+// Add destination to favorite table 
 router.post('/',rejectUnauthenticated, (req, res) => {
   console.log('req.body is',req.body)
 
@@ -47,5 +47,23 @@ router.post('/',rejectUnauthenticated, (req, res) => {
 
   
 });
+
+router.delete('/:id', rejectUnauthenticated, (req,res) => {
+  const id = req.params.id
+  console.log('DELETE id is', id)
+
+  sqlText = `
+    DELETE FROM "favorite"
+    WHERE "id" = $1;`
+
+  sqlParams = [id]
+
+  pool.query(sqlText, sqlParams)
+    .then(() => res.sendStatus(200))
+    .catch((error) => {
+      console.log('Error in favorites.router deleting favorite', error)
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;

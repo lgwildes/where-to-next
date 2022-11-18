@@ -25,24 +25,21 @@ function* fetchFavorites(action) {
     }
 }
 
-
-function* setActiveFavorite(action) {
-    try {
-       const response =  yield axios.get(`/favorites/${action.payload}`) //NOT SURE IF THIS IS THE RIGHT THING....
-        yield put({
-            type: 'SET_ACTIVE_FAVORITE',
-            payload: response.data
-        })
-    }
-    catch(error){
-        console.error(error);
+function* deleteFavorite(action) {
+    try{
+        console.log('🥫 delete this from my favorites', action.payload)
+        yield axios.delete(`/api/favorites/${action.payload}`)
+    } catch {
+        console.log('❌Error in favorites.saga deleting favorite')
     }
 }
+
+
 
 function* addFavoriteSaga() {
     yield takeEvery('ADD_FAVORITE', addFavorite)
     yield takeEvery('FETCH_FAVORITES', fetchFavorites)
-    // yield takeEvery('SET_ACTIVE_FAVORITE', setActiveFavorite)
+    yield takeEvery('DELETE_FAVORITE', deleteFavorite)
 }
 
 export default addFavoriteSaga;
