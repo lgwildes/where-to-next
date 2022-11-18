@@ -5,6 +5,7 @@ import featureReducer from './feature.reducer';
 import addFeatureReducer from './add.feature.reducer';
 import resultReducer from './result.reducer';
 import favorites from './favorites.reducer';
+import activeFavorite from './active.favorite.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   featureReducer, //stores fetched features from DB
   addFeatureReducer,//stores ids of clicked features
   resultReducer,
-  favorites
+  favorites,
+  activeFavorite
 });
 
 export default rootReducer;

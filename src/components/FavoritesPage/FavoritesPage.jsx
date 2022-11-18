@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2';
-import { FavoriteBorder, FavoriteBorderOutlined, Edit, Check,  Note } from '@mui/icons-material';
+import { FavoriteBorder, Favorite, Edit, Check, DeleteOutline, Note, FavoriteTwoTone } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -20,8 +20,10 @@ function FavoritesPage() {
   const dispatch = useDispatch();
   const currentUser = useSelector(store => store.user);
   const favorites = useSelector(store => store.favorites);
- 
-  
+  const activeFavorite = useSelector(store => store.activeFavorite)
+    // Modal state and styles
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen(false);
  
   useEffect(() => {
     dispatch({
@@ -34,17 +36,7 @@ function FavoritesPage() {
     })
   }, [])
 
-  // Modal state and styles
-  const [open, setOpen] = useState(false);
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  //   dispatch({
-  //     type: 'SET_ACTIVE_FAVORITE',
-
-  //   })
-  // }
-  const handleClose = () => setOpen(false);
   const style = {
     position: 'absolute',
     top: '50%',
@@ -57,21 +49,22 @@ function FavoritesPage() {
     p: 4,
   };
 
-  // Edit note state
-  const [ note, setNote ] = useState('');
+
+
   // handle on submit of note edit
-  function updateNote(favoriteId) {
-    console.log(`my favorite id is ${favoriteId}`);
-    handleClose();
-    dispatch({
-      type:'EDIT_NOTE',
-      payload: {
-        note: note,
-        favoriteId: favoriteId
-      }
-    })
-    // TODO GET notes 
-  }
+  // function updateNote(favoriteId) {
+  //   console.log(`my favorite id is ${favoriteId}`);
+  //   handleClose();
+  //   dispatch({
+  //     type:'EDIT_NOTE',
+  //     payload: {
+  //       note: note,
+  //       favoriteId: favoriteId
+  //     }
+  //   })
+  //   // TODO GET notes 
+  // }
+
 
  
   if (favorites) {
@@ -79,7 +72,8 @@ function FavoritesPage() {
     return (
       <>
         <div className="container">
-          <h1>my favorites</h1>
+          <h1> <Favorite
+                    /> my favorites </h1>
         </div>
         <Grid2 container spacing={2} m={2}
           alignItems="center"
@@ -105,8 +99,13 @@ function FavoritesPage() {
                      setOpen(true);
                      dispatch({
                        type: 'SET_ACTIVE_FAVORITE',
-                        payload: destination.favorite_id
-                     })}} > 
+                        payload: destination
+                     })
+                    
+                      console.log('❤️‍🔥active favorite is ', destination)
+                     
+                      }}
+                      > 
                     <Edit
                     />
                   </IconButton>
@@ -115,26 +114,51 @@ function FavoritesPage() {
                     onClose={handleClose}>
                     <Box sx={style}>
                       <TextField
-                      //UPDATE ACTIVE ON CHANGE
+                        value={activeFavorite.notes}//THIS IS NULL IF NO NOTE AND IS AN ISSUE
                         onChange={(event) => dispatch({
-                          type: ''
+                          type: 'UPDATE_NOTE',
+                          payload: {
+                            notes: event.target.value,
+                          }
                         })} 
                         variant="outlined"
                         multiline
                         rows={4}
                         placeholder="write a note..."
-                        // add VALUE FIEL
                          />
                          {/* on submit saga  */}
-                      <IconButton onClick={() => updateNote(destination.favorite_id)}>
+                      <IconButton onClick={() => {
+                         handleClose();
+
+                         dispatch({
+                           type:'EDIT_NOTE',
+                           payload: {
+                             note: activeFavorite.notes,
+                             favoriteId: activeFavorite.favorite_id
+                           }
+                         })
+                         dispatch({
+                          type: 'FETCH_FAVORITES',
+                          payload: currentUser
+                        })
+                    
+                        dispatch({
+                          type: 'GET_FAVORITES',
+                        })
+                      }}>
                         <Check />
                       </IconButton>
                     </Box>
                   </Modal>
-                  <IconButton onClick={(event) => deleteFavorite(destination.favorite_id)} > 
-                    <FavoriteBorderOutlined
-                    />
+
+                  {/* DELETE BUTTON */}
+                  <IconButton>
+                      <DeleteOutline
+                      onClick={() => {
+                        confirm('\nare you sure you want to remove this destination from your favorites?')
+                      }} />
                   </IconButton>
+
 
                 </Card>
               </Grid2>

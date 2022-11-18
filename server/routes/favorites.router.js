@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
   sqlText = `SELECT "favorite".id AS favorite_id, "name", "description", "notes" FROM "favorite"
               JOIN "destination" ON "destination".id = "favorite".destination_id
-            WHERE "user_id" = $1;
+            WHERE "user_id" = $1
+            ORDER BY "name" ASC;
   `
     
   sqlParams = [req.query.id]
