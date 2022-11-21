@@ -9,11 +9,9 @@ const {
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
   let preferences = req.query
   console.log('submit.router GET preferences', preferences)
 
-    //TODO add IF statement for international/domestic
   
     // loop through preferences.features to find number of parameters.
     // set variable placeholders $1, $2, etc. to the number of features
@@ -47,31 +45,46 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         // search for INTERNATIONAL and DOMESTIC
         if (preferences.domestic == 'true' && preferences.international == 'true') {
             console.log('Whole world 🌐')
-            sqlText =  `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+            sqlText =  `SELECT "destination"."id", destination."name", "international", 
+            json_agg(feature_id) AS features, json_agg(feature.name) AS feature_names,
+            COUNT (feature_id) as "counted_features", "description", "url", "alt_text"  
+            FROM "destination" 
             JOIN destination_feature ON destination_id = destination.id
+            JOIN feature ON destination_feature.feature_id = feature.id
             WHERE feature_id IN(${variablePlaceholders})
             GROUP BY "destination"."id"
-            ORDER BY "destination".id
+            ORDER BY "counted_features" DESC
+            LIMIT 5  
             ;`
             console.log('Whole world 🌐')
         } 
             // search for ONLY INTERNATIONAL
             if (preferences.domestic == 'false'){
-                sqlText = `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+                sqlText = `SELECT "destination"."id", destination."name", "international", 
+                json_agg(feature_id) AS features, json_agg(feature.name) AS feature_names,
+                COUNT (feature_id) as "counted_features", "description", "url", "alt_text"  
+                FROM "destination" 
                 JOIN destination_feature ON destination_id = destination.id
+                JOIN feature ON destination_feature.feature_id = feature.id
                 WHERE feature_id IN(${variablePlaceholders}) AND "international" = TRUE
                 GROUP BY "destination"."id"
-                ORDER BY "destination".id
+                ORDER BY "counted_features" DESC
+                LIMIT 5        
                 ;`
                 console.log('only international 🏴󠁧󠁢󠁥󠁮󠁧󠁿')
             }   
                 // search for ONLY DOMESTIX
                 else if (preferences.international == 'false') {
-                    sqlText = `SELECT "destination"."id", "name", "international", json_agg(feature_id) AS features, "description" FROM "destination" 
+                    sqlText = `SELECT "destination"."id", destination."name", "international", 
+                    json_agg(feature_id) AS features, json_agg(feature.name) AS feature_names,
+                    COUNT (feature_id) as "counted_features", "description", "url", "alt_text"  
+                    FROM "destination" 
                     JOIN destination_feature ON destination_id = destination.id
+                    JOIN feature ON destination_feature.feature_id = feature.id
                     WHERE feature_id IN(${variablePlaceholders}) AND "international" = FALSE
                     GROUP BY "destination"."id"
-                    ORDER BY "destination".id
+                    ORDER BY "counted_features" DESC
+                    LIMIT 5
                     ;`
                     console.log('AMERICA 🗽')
                 }
@@ -85,7 +98,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(sqlText, sqlParams)
         .then( dbResult => {
             res.send(dbResult.rows);
-            console.log('😱response from database is', dbResult.rows)
+            // console.log('😱response from database is', dbResult.rows)
         })
         .catch( error => {
             console.log('error in submit.router GET', error)

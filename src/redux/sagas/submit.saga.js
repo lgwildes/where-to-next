@@ -4,14 +4,12 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* submit(action) {
     try{
         const response = yield axios.get(`/api/submit/`, {params: action.data})
-        console.log('❓WHAT IS MY PARAMS', action.data)
         yield put({
             type:'SET_RESULTS',
             payload: response
         })
 
     } catch (error) {
-        console.log('❗action.data is...', action.data)
         console.log('❌Error in submit.saga submitting user preferences', error)
     }
 }

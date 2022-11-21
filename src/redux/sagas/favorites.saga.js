@@ -1,10 +1,15 @@
+import { useRadioGroup } from "@mui/material";
 import axios from "axios";
 import {takeEvery, put} from 'redux-saga/effects';
 
 function* addFavorite(action) {
     try{
-        console.log('💖in favorites.saga adding new favorite!', action.payload)
+        console.log('💖in favorites.saga adding new favorite!', action.payload.id)
         yield axios.post(`/api/favorites/`, action.payload)
+        yield put({
+            type: 'FETCH_FAVORITES', 
+            payload: action.payload.userId
+        })
 
     } catch(error) {
        console.log('❌Error in favorites.saga adding to favorites', error);

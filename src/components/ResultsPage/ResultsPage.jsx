@@ -1,35 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2'; 
+import { FavoriteBorder, FavoriteBorderOutlined, Favorite, FavoriteIcon } from '@mui/icons-material';
+import { IconButton, Chip } from '@mui/material';
 
-import { FavoriteBorder, FavoriteBorderOutlined } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 
 
 function ResultsPage() {
     const dispatch = useDispatch();
+    const [clicked, setClicked] = useState(false)
+    const currentUser = useSelector(store => store.user);
+    const favorites = useSelector(store => store.favorites)
 
     useEffect(() => {
         dispatch({
             type: 'FETCH_RESULTS'
         })
+        dispatch({
+            type:'FETCH_FAVORITES',
+            payload: currentUser
+        })
     },[])
 
     const results = useSelector(store => store.resultReducer.data)
-    console.log('🗺️results from store are', results)
+    console.log('🗺️result from store are', results)
     
   function addFavorite(destinationId) {
+    console.log('ADDING FAVORITE 😱')
     dispatch({
         type:'ADD_FAVORITE',
         payload: {
-            id: destinationId
+            id: destinationId,
+            userId: currentUser
         }
     })
+    // dispatch({
+    //     type:'FETCH_FAVORITES',
+    //     payload:currentUser
+    // })
   }
         
     
@@ -47,20 +61,39 @@ function ResultsPage() {
                     return(
                         <Grid2 
                         key={destination.id}> 
-                            <Card sx={{width:500, height:300, m:2, boxShadow:3}}
+                            <Card sx={{width:500, height:400, m:2, boxShadow:3}}
                                 >
                                 <CardMedia
                                     component="img"
                                     height="120"
-                                    image="https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //TODO get photos from DB
-                                    alt="image description" //TODO get alt_text from DB
+                                    image={destination.url} //TODO get photos from DB
+                                    alt={destination.alt_text} //TODO get alt_text from DB
                                     />
-                                    <h4>{destination.name}</h4>
+                                    <h3>{destination.name}</h3>
+                                    <h5>matching preferences</h5>
+                                    {destination.feature_names.map( feature => {
+                                        return(
+                                            <Chip
+                                            key={feature}
+                                            label={feature} />
+                                        )
+                                    })}
                                     <p>{destination.description}</p>
-                                    <IconButton onClick={(event) => addFavorite(destination.id)} >
-                                        <FavoriteBorderOutlined 
-                                        />
-                                    </IconButton>
+                                    
+                                    <IconButton onClick={(event) => {
+                                        addFavorite(destination.id)}}>
+                                        <FavoriteBorder />
+                                        {/* < FavoriteButton
+                                            destinationId={destination.id} 
+                                        /> */}
+                                     </IconButton>
+                                    {/* <IconButton  >
+                                   {clicked ? 
+                                    <Favorite />
+                                    :
+                                    < FavoriteBorder/> 
+                                    } 
+                                    </IconButton> */}
                                    
                             </Card>
                         </Grid2>

@@ -8,16 +8,8 @@ const {
   } = require('../modules/authentication-middleware');
 
 
-router.get('/', (req, res) => {
- 
-});
 
-
-router.post('/', (req, res) => {
-  
-});
-
-router.put('/',rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     const sqlText = `UPDATE "favorite"
                     SET "notes" = $1
                     WHERE id = $2;`

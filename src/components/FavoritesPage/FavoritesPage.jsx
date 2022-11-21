@@ -48,24 +48,6 @@ function FavoritesPage() {
     boxShadow: 24,
     p: 4,
   };
-
-
-
-  // handle on submit of note edit
-  // function updateNote(favoriteId) {
-  //   console.log(`my favorite id is ${favoriteId}`);
-  //   handleClose();
-  //   dispatch({
-  //     type:'EDIT_NOTE',
-  //     payload: {
-  //       note: note,
-  //       favoriteId: favoriteId
-  //     }
-  //   })
-  //   // TODO GET notes 
-  // }
-
-
  
   if (favorites) {
    
@@ -86,10 +68,10 @@ function FavoritesPage() {
                   <CardMedia
                     component="img"
                     height="120"
-                    image="https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //TODO get photos from DB
-                    alt="image description" //TODO get alt_text from DB
+                    image={destination.url} //TODO get photos from DB
+                    alt={destination.alt_text} //TODO get alt_text from DB
                   />
-                  <h4>{destination.name} with id of {destination.favorite_id}</h4>
+                  <h3>{destination.name}</h3>
                   <p>{destination.description}</p>
                   <h4>my notes</h4>
                   <p>{destination.notes}</p> 
