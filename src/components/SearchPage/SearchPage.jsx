@@ -1,15 +1,21 @@
 import React from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
-import { useState } from 'react';
-
-// import MUI elements
-
+import {useDispatch, useSelector} from 'react-redux';
+import { useEffect } from 'react';
 //import components
 import Features from '../Features/Features';
 
-function SearchPage() {
 
+
+
+function SearchPage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type:'CLEAR_FEATURES'
+    })
+  
+  },[]) 
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
