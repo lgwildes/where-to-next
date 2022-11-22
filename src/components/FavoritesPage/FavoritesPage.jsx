@@ -13,7 +13,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { setContext } from 'redux-saga/effects';
-
+// import sweetalert for delete confirmation
+import swal from 'sweetalert';
 
 
 function FavoritesPage() {
@@ -48,6 +49,7 @@ function FavoritesPage() {
     boxShadow: 24,
     p: 4,
   };
+
  
   if (favorites) {
    
@@ -136,19 +138,34 @@ function FavoritesPage() {
                   {/* DELETE BUTTON */}
                   <IconButton
                   onClick={() => {
-                    // confirm('\nare you sure you want to remove this destination from your favorites?')
-                    dispatch({
-                      type:'DELETE_FAVORITE',
-                      payload: destination.favorite_id
-                    })
-                    dispatch({
-                      type: 'FETCH_FAVORITES',
-                      payload: currentUser
-                    })
-                
-                    dispatch({
-                      type: 'GET_FAVORITES',
-                    })
+                   swal({
+                    title: "Are you sure?",
+                    text: "This destination will be removed from your favorites!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                   })
+                   .then((willDelete) => {
+                    if(willDelete) {
+                      dispatch({
+                        type:'DELETE_FAVORITE',
+                        payload: destination.favorite_id
+                      })
+                      dispatch({
+                        type: 'FETCH_FAVORITES',
+                        payload: currentUser
+                      })
+                  
+                      dispatch({
+                        type: 'GET_FAVORITES',
+                      })
+                      swal("Destination deleted!", {
+                        icon: "success",
+                      });
+                    } else{
+                      swal("Delete cancelled!")
+                    }
+                   });
                   }}>
                       <DeleteOutline
                        />
