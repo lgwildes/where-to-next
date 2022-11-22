@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2'; 
+import Button from '@mui/material/Button';
 import { FavoriteBorder, FavoriteBorderOutlined, Favorite, FavoriteIcon } from '@mui/icons-material';
 import { IconButton, Chip } from '@mui/material';
 
@@ -40,10 +41,22 @@ function ResultsPage() {
             userId: currentUser
         }
     })
-    // dispatch({
-    //     type:'FETCH_FAVORITES',
-    //     payload:currentUser
-    // })
+    dispatch({
+        type:'FETCH_FAVORITES',
+        payload:currentUser
+    })
+  }
+
+  const isFavorite = (destinationId) => {
+    for (let fav of favorites) {
+        if(fav.destination_id === destinationId){
+            return true;
+        }
+        
+    }
+    
+        return false;
+
   }
         
     
@@ -80,20 +93,15 @@ function ResultsPage() {
                                     })}
                                     <p>{destination.description}</p>
                                     
-                                    <IconButton onClick={(event) => {
-                                        addFavorite(destination.id)}}>
-                                        <FavoriteBorder />
-                                        {/* < FavoriteButton
-                                            destinationId={destination.id} 
-                                        /> */}
-                                     </IconButton>
-                                    {/* <IconButton  >
-                                   {clicked ? 
-                                    <Favorite />
-                                    :
-                                    < FavoriteBorder/> 
-                                    } 
-                                    </IconButton> */}
+                                    {isFavorite(destination.id) ? 
+                                            < Favorite />
+                                        : 
+                                        <IconButton 
+                                        onClick={(event) => {
+                                            addFavorite(destination.id)}}>
+                                            <FavoriteBorder /> 
+                                        </IconButton>
+                                     }
                                    
                             </Card>
                         </Grid2>

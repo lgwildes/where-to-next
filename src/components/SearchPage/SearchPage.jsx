@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 //import components
 import Features from '../Features/Features';
+import SelectedFeatures from '../SelectedFeatures/SelectedFeatures';
 
 
 
@@ -21,13 +22,14 @@ function SearchPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h2>welcome, {user.username}</h2>
-      <h3>let's dream!</h3>
+      <h1>let's dream!</h1>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
 
       <div>
-        <h5>selected feature chips will appear here</h5>
+        <h5>(selected feature chips will appear here)</h5>
+        {/* <SelectedFeatures /> */}
+
         {/* Display chips by rendering an array of chips */}
       </div>
       <div>

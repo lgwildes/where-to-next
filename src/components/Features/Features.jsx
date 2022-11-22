@@ -6,6 +6,8 @@ import { FormControlLabel } from '@mui/material';
 import { Dispatch, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ButtonOutlined from '../ButtonOutlined/ButtonOutlined';
+import ButtonFilled from '../ButtonFilled/ButtonFilled';
 
 function Features() {
 
@@ -24,7 +26,7 @@ function Features() {
     },[]);
 
     const addFeatureId = (featureId) => {
-     
+        
         console.log('adding feature with id of ', featureId );
         dispatch({
             type:'ADD_FEATURE',
@@ -72,6 +74,16 @@ function Features() {
 
     }
 
+    const isSelected = (featureId) => {
+        for (let selected of addedFeatures) {
+            if(selected.id === featureId){
+                return true;
+            }
+        }
+        return false;
+    }
+      
+    
 
     return (
        <>
@@ -92,15 +104,22 @@ function Features() {
                 {/* TODO on click change button color */}
                {features.map(feature => {
                 if(feature.category_id === 1){
-                    return(
-                        <Button 
-                        onClick={(event) => addFeatureId(feature.id)}
-                        key={feature.id}
-                        variant="outlined"
-                        size="small"
-                        value="{feature.id}"
-                        >{feature.name}</Button>
-                    )
+                    {isSelected(feature.id) ? 
+                            <ButtonFilled
+                                feature={feature} />
+                        :  
+                           < ButtonOutlined
+                                feature={feature} />
+                        }
+                    // return(
+                    //     <Button 
+                    //     onClick={(event) => addFeatureId(feature)}
+                    //     key={feature.id}
+                    //     variant="outlined"
+                    //     size="small"
+                    //     value="{feature.id}"
+                    //     >{feature.name}</Button>
+                    // )
                 }
                 else{
                     return
@@ -111,13 +130,15 @@ function Features() {
             </Grid2>
             <Grid2>
             <h3>what surrounds you?</h3>
-                  {/* TODO loop through each DB category and render buttons */}
-                {/* TODO on click change button color */}
+                {/* TODO on click change button to disabled*/}
                 {features.map(feature => {
                 if(feature.category_id === 2){
                     return(
                         <Button 
-                        onClick={(event) => addFeatureId(feature.id)}
+                        onClick={(event) => {
+                            addFeatureId(feature)
+                        }}
+                        disabled={false}
                         key={feature.id}
                         variant="outlined"
                         size="small"
@@ -134,13 +155,11 @@ function Features() {
             </Grid2>
             <Grid2>
             <h3>what are you up to?</h3>
-                  {/* TODO loop through each DB category and render buttons */}
-                {/* TODO on click change button color */}
                 {features.map(feature => {
                 if(feature.category_id === 3){
                     return(
                         <Button 
-                        onClick={(event) => addFeatureId(feature.id)}
+                        onClick={(event) => addFeatureId(feature)}
                         key={feature.id}
                         variant="outlined"
                         size="small"
@@ -157,13 +176,11 @@ function Features() {
             </Grid2>
             <Grid2>
             <h3>how do you have fun?</h3>
-                  {/* TODO loop through each DB category and render buttons */}
-                {/* TODO on click change button color */}
                 {features.map(feature => {
                 if(feature.category_id === 4){
                     return(
                         <Button 
-                        onClick={(event) => addFeatureId(feature.id)}
+                        onClick={(event) => addFeatureId(feature)}
                         key={feature.id}
                         variant="outlined"
                         size="small"

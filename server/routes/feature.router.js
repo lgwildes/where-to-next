@@ -5,27 +5,19 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
-router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
-  const sqlText = `SELECT * FROM "feature";`;
-  pool.query(sqlText)
-    .then( dbResult => {
-        res.send(dbResult.rows);
-    })
-    .catch( error => {
-        console.log('error in feature.router GET', error)
-        res.sendStatus(500);
-    })
+
+router.get('/', rejectUnauthenticated, async (req, res) => {
+  try{
+    const sqlText = `SELECT * FROM "feature";`;
+    let dbResult = await pool.query(sqlText)
+    res.send(dbResult.rows);
+  }
+  catch(err)  {
+    console.error('feature.router GET error', err.message);
+    res.sendStatus(500);
+  }
+  
 });
 
-/**
- * POST route template
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  // POST route code here
-});
 
 module.exports = router;

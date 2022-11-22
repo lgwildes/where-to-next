@@ -27,9 +27,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             else {
                 placeholders += ` $${i+1}`
             }
-           
-            // console.log('TESTING OUT placeholders 🚙', placeholders)
-            
         }
         return placeholders
     }
@@ -41,10 +38,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     // sqlText to insert into query with variable placeholders for feature ids
     let sqlText = 'hello';
     
-   console.log(preferences)
+   console.log('my preferences req.query is ', preferences)
+   console.log('preferences. features is', preferences.features)
         // search for INTERNATIONAL and DOMESTIC
         if (preferences.domestic == 'true' && preferences.international == 'true') {
-            console.log('Whole world 🌐')
             sqlText =  `SELECT "destination"."id", destination."name", "international", 
             json_agg(feature_id) AS features, json_agg(feature.name) AS feature_names,
             COUNT (feature_id) as "counted_features", "description", "url", "alt_text"  
@@ -56,7 +53,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             ORDER BY "counted_features" DESC
             LIMIT 5  
             ;`
-            console.log('Whole world 🌐')
+            // console.log('Whole world 🌐')
         } 
             // search for ONLY INTERNATIONAL
             if (preferences.domestic == 'false'){
@@ -71,7 +68,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                 ORDER BY "counted_features" DESC
                 LIMIT 5        
                 ;`
-                console.log('only international 🏴󠁧󠁢󠁥󠁮󠁧󠁿')
+                // console.log('only international 🏴󠁧󠁢󠁥󠁮󠁧󠁿')
             }   
                 // search for ONLY DOMESTIX
                 else if (preferences.international == 'false') {
@@ -86,13 +83,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                     ORDER BY "counted_features" DESC
                     LIMIT 5
                     ;`
-                    console.log('AMERICA 🗽')
+                    // console.log('AMERICA 🗽')
                 }
     
     console.log('My sqlText is...', sqlText);
     
-    // params for the query!
-    let sqlParams = preferences.features;
+    let sqlParams = preferences.features
+
     console.log('SQL PARAMS ARE', sqlParams)
 
     pool.query(sqlText, sqlParams)
@@ -108,13 +105,5 @@ router.get('/', rejectUnauthenticated, (req, res) => {
      
 });
 
-/**
- * POST route template
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  // POST route code here
-
-
-});
 
 module.exports = router;
