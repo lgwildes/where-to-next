@@ -21,8 +21,8 @@ function SearchPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
-    <div >
-      <h1 className='dream'>let's dream!</h1>
+    <div id="search-page" >
+      <h1 className='search-header'>...where to next?</h1>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
 

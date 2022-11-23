@@ -93,21 +93,6 @@ function Features() {
 
     return (
        <div className='search-page'>
-        <FormGroup 
-            container
-            display="flex"
-            justifyContent="center" 
-
-        >
-            <FormControlLabel 
-            control={<Checkbox 
-                        onChange={handleDomesticCheckbox} />} 
-            label="domestic (U.S.)" />
-            <FormControlLabel 
-            control={<Checkbox 
-                        onChange={handleInternationalCheckbox} />} 
-            label="international" />
-        </FormGroup>
 
         <Grid2 
             container 
@@ -116,11 +101,12 @@ function Features() {
             direction="row"
             justifyContent="space-around">
             <Grid2 
+                id="feature-1"
                 display="flex"
                 flexDirection="column"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignContent="center">
-                <h3>who's going?</h3>
+                <h3 className="feature-header">who's going?</h3>
                 {/* TODO on click change button color */}
                {features.map(feature => {
                 if(feature.category_id === 1){
@@ -148,11 +134,12 @@ function Features() {
                
             </Grid2>
             <Grid2
+                id="feature-2"
                 display="flex"
                 flexDirection="column"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignContent="center">
-            <h3>what surrounds you?</h3>
+            <h3 className="feature-header">what surrounds you?</h3>
                 {/* TODO on click change button to disabled*/}
                 {features.map(feature => {
                 if(feature.category_id === 2){
@@ -174,11 +161,12 @@ function Features() {
                
             </Grid2>
             <Grid2
+                id="feature-3"
                 display="flex"
                 flexDirection="column"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignContent="center">
-            <h3>what are you up to?</h3>
+            <h3 className="feature-header">what are you up to?</h3>
                 {features.map(feature => {
                 if(feature.category_id === 3){
                         return(
@@ -199,11 +187,12 @@ function Features() {
                
             </Grid2>
             <Grid2
+                id="feature-4"
                 display="flex"
                 flexDirection="column"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignContent="center">
-            <h3>how do you have fun?</h3>
+            <h3 className="feature-header">how do you have fun?</h3>
                 {features.map(feature => {
                 if(feature.category_id === 4){
                     return(
@@ -224,13 +213,68 @@ function Features() {
                
             </Grid2>
         </Grid2>
-            <div>
-            <Button
-                direction="flex"
-                justifyContent="flex-end"
-                onClick={submitPreferences}
-                variant="contained">find my destinations! ✈️</Button>
-            </div>
+
+        <Grid2 
+            xs={{m:5 }}
+            container
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+
+        >
+            <Grid2>
+                <FormGroup 
+                    id="checkbox-container"
+                    container
+                    display="flex"
+                    justifyContent="center" 
+                   
+
+                    >
+                    <FormControlLabel 
+                    control={<Checkbox 
+                                onChange={handleDomesticCheckbox} />} 
+                    label="domestic (U.S.)" />
+                    <FormControlLabel 
+                    control={<Checkbox 
+                                onChange={handleInternationalCheckbox} />} 
+                    label="international" />
+                </FormGroup>
+                </Grid2>
+                <Grid2 id="search-button">
+                    <Button
+                        onClick={submitPreferences}
+                        variant="contained">find my destinations! ✈️
+                    </Button>
+                </Grid2>
+        </Grid2>
+            {/* <Grid2>
+            <FormGroup 
+                container
+                display="flex"
+                justifyContent="center" 
+
+                >
+                <FormControlLabel 
+                control={<Checkbox 
+                            onChange={handleDomesticCheckbox} />} 
+                label="domestic (U.S.)" />
+                <FormControlLabel 
+                control={<Checkbox 
+                            onChange={handleInternationalCheckbox} />} 
+                label="international" />
+            </FormGroup>
+            </Grid2>
+            <Grid2 id="search-button"
+                    display="flex"
+                    justifyContent="flex-end">
+                <Button
+                    
+                    justifyContent="flex-end"
+                    onClick={submitPreferences}
+                    variant="contained">find my destinations! ✈️
+                </Button>
+            </Grid2> */}
         </div>
     )
 }
