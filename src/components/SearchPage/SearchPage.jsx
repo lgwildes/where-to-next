@@ -21,14 +21,14 @@ function SearchPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
-    <div className="container">
-      <h1>let's dream!</h1>
+    <div >
+      <h1 className='dream'>let's dream!</h1>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
 
-      <div>
-        <h5>(selected feature chips will appear here)</h5>
-        {/* <SelectedFeatures /> */}
+      <div className='feature-chips'>
+        
+        <SelectedFeatures />
 
         {/* Display chips by rendering an array of chips */}
       </div>

@@ -83,11 +83,22 @@ function Features() {
         return false;
     }
       
+    const removeFeature = (featureId) => {
+        dispatch({
+            type: 'REMOVE_FEATURE',
+            payload: featureId
+           })
+    }
     
 
     return (
-       <>
-        <FormGroup>
+       <div className='search-page'>
+        <FormGroup 
+            container
+            display="flex"
+            justifyContent="center" 
+
+        >
             <FormControlLabel 
             control={<Checkbox 
                         onChange={handleDomesticCheckbox} />} 
@@ -98,28 +109,36 @@ function Features() {
             label="international" />
         </FormGroup>
 
-        <Grid2 container spacing={2}>
-            <Grid2>
+        <Grid2 
+            container 
+            spacing={2} 
+            display="flex"
+            direction="row"
+            justifyContent="space-around">
+            <Grid2 
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignContent="center">
                 <h3>who's going?</h3>
                 {/* TODO on click change button color */}
                {features.map(feature => {
                 if(feature.category_id === 1){
-                    {isSelected(feature.id) ? 
-                            <ButtonFilled
-                                feature={feature} />
-                        :  
-                           < ButtonOutlined
-                                feature={feature} />
-                        }
-                    // return(
-                    //     <Button 
-                    //     onClick={(event) => addFeatureId(feature)}
-                    //     key={feature.id}
-                    //     variant="outlined"
-                    //     size="small"
-                    //     value="{feature.id}"
-                    //     >{feature.name}</Button>
-                    // )
+                    // return isSelected(feature.id) ? 
+                    //         <ButtonFilled
+                    //             feature={feature} />
+                    //     :  
+                    //        < ButtonOutlined
+                    //             feature={feature} />
+                    return(
+                        <Button 
+                        onClick={(event) => isSelected(feature.id) ? removeFeature(feature.id) : addFeatureId(feature)}
+                        key={feature.id}
+                        variant={isSelected(feature.id) ? "contained" : "outlined"}
+                        size="small"
+                        value="{feature.id}"
+                        >{feature.name}</Button>
+                    )
                 }
                 else{
                     return
@@ -128,19 +147,20 @@ function Features() {
                })}
                
             </Grid2>
-            <Grid2>
+            <Grid2
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignContent="center">
             <h3>what surrounds you?</h3>
                 {/* TODO on click change button to disabled*/}
                 {features.map(feature => {
                 if(feature.category_id === 2){
                     return(
                         <Button 
-                        onClick={(event) => {
-                            addFeatureId(feature)
-                        }}
-                        disabled={false}
+                        onClick={(event) => isSelected(feature.id) ? removeFeature(feature.id) : addFeatureId(feature)}
                         key={feature.id}
-                        variant="outlined"
+                        variant={isSelected(feature.id) ? "contained" : "outlined"}
                         size="small"
                         value="{feature.id}"
                         >{feature.name}</Button>
@@ -153,19 +173,23 @@ function Features() {
                })}
                
             </Grid2>
-            <Grid2>
+            <Grid2
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignContent="center">
             <h3>what are you up to?</h3>
                 {features.map(feature => {
                 if(feature.category_id === 3){
-                    return(
-                        <Button 
-                        onClick={(event) => addFeatureId(feature)}
-                        key={feature.id}
-                        variant="outlined"
-                        size="small"
-                        value="{feature.id}"
-                        >{feature.name}</Button>
-                    )
+                        return(
+                            <Button 
+                            onClick={(event) => isSelected(feature.id) ? removeFeature(feature.id) : addFeatureId(feature)}
+                            key={feature.id}
+                            variant={isSelected(feature.id) ? "contained" : "outlined"}
+                            size="small"
+                            value="{feature.id}"
+                            >{feature.name}</Button>
+                        )
                 }
                 else{
                     return
@@ -174,15 +198,19 @@ function Features() {
                })}
                
             </Grid2>
-            <Grid2>
+            <Grid2
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignContent="center">
             <h3>how do you have fun?</h3>
                 {features.map(feature => {
                 if(feature.category_id === 4){
                     return(
                         <Button 
-                        onClick={(event) => addFeatureId(feature)}
+                        onClick={(event) => isSelected(feature.id) ? removeFeature(feature.id) : addFeatureId(feature)}
                         key={feature.id}
-                        variant="outlined"
+                        variant={isSelected(feature.id) ? "contained" : "outlined"}
                         size="small"
                         value="{feature.id}"
                         >{feature.name}</Button>
@@ -195,16 +223,15 @@ function Features() {
                })}
                
             </Grid2>
-            <Grid2>
-                <Button
+        </Grid2>
+            <div>
+            <Button
+                direction="flex"
+                justifyContent="flex-end"
                 onClick={submitPreferences}
                 variant="contained">find my destinations! ✈️</Button>
-            </Grid2>
-
-
-        </Grid2>
-
-        </>
+            </div>
+        </div>
     )
 }
 

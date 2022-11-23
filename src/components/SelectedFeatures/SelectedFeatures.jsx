@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { IconButton, Chip } from '@mui/material';
+import ChipArray from '../ChipArray/ChipArray';
 
 function SelectedFeatures() {
     const dispatch = useDispatch();
@@ -15,17 +16,17 @@ function SelectedFeatures() {
         })
     })
 
+  
+
     if(selectedFeatures) {
         return (
             <>
-            {/* {JSON.stringify(features)} */}
-            {/* key and label */}
            { selectedFeatures.map(feature => {
-                return(
-                    <Chip key={feature}
-                        label={feature}/>
-                )
-           
+            return(
+                <ChipArray
+                feature={feature} />
+            )
+                    
            })}
             
             </>

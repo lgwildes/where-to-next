@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 //import MUI components
 import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2';
@@ -10,7 +11,6 @@ import { FavoriteBorder, Favorite, Edit, Check, DeleteOutline, Note, FavoriteTwo
 import { IconButton } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { setContext } from 'redux-saga/effects';
 // import sweetalert for delete confirmation
@@ -55,24 +55,26 @@ function FavoritesPage() {
    
     return (
       <>
-        <div className="container">
-          <h1> <Favorite
-                    /> my favorites </h1>
+        <div className='favorite'>
+        <Favorite/> <h1 >my favorites </h1>
+         
         </div>
         <Grid2 container spacing={2} m={2}
           alignItems="center"
           justifyContent="center" >
+          
           {favorites.map(destination => {
             return (
               <Grid2
                 key={destination.favorite_id}>
-                <Card sx={{ width: 500, height: 400, m: 2, boxShadow: 3 }}>
+                <Card sx={{ width: 500, height: 500, m: 2,  boxShadow: 3 }}>
                   <CardMedia
                     component="img"
-                    height="120"
+                    height="200"
                     image={destination.url} //TODO get photos from DB
                     alt={destination.alt_text} //TODO get alt_text from DB
                   />
+                  <Typography sx={{p:3}}>
                   <h3>{destination.name}</h3>
                   <p>{destination.description}</p>
                   <h4>my notes</h4>
@@ -93,6 +95,8 @@ function FavoritesPage() {
                     <Edit
                     />
                   </IconButton>
+                  </Typography>
+                 
                   <Modal
                     open={open}
                     onClose={handleClose}>
@@ -162,9 +166,7 @@ function FavoritesPage() {
                       swal("Destination deleted!", {
                         icon: "success",
                       });
-                    } else{
-                      swal("Delete cancelled!")
-                    }
+                    } 
                    });
                   }}>
                       <DeleteOutline
