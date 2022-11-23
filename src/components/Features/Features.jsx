@@ -6,8 +6,7 @@ import { FormControlLabel } from '@mui/material';
 import { Dispatch, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ButtonOutlined from '../ButtonOutlined/ButtonOutlined';
-import ButtonFilled from '../ButtonFilled/ButtonFilled';
+
 
 function Features() {
 
@@ -110,12 +109,6 @@ function Features() {
                 {/* TODO on click change button color */}
                {features.map(feature => {
                 if(feature.category_id === 1){
-                    // return isSelected(feature.id) ? 
-                    //         <ButtonFilled
-                    //             feature={feature} />
-                    //     :  
-                    //        < ButtonOutlined
-                    //             feature={feature} />
                     return(
                         <Button 
                         onClick={(event) => isSelected(feature.id) ? removeFeature(feature.id) : addFeatureId(feature)}
@@ -222,7 +215,7 @@ function Features() {
             alignItems="center"
 
         >
-            <Grid2>
+            <Grid2 id="int-dom">
                 <FormGroup 
                     id="checkbox-container"
                     container
@@ -231,9 +224,12 @@ function Features() {
                    
 
                     >
-                    <FormControlLabel 
-                    control={<Checkbox 
-                                onChange={handleDomesticCheckbox} />} 
+                <FormControlLabel 
+                    id="checkbox-label"
+                    control=
+                    {<Checkbox 
+                        onChange={handleDomesticCheckbox}
+                     />} 
                     label="domestic (U.S.)" />
                     <FormControlLabel 
                     control={<Checkbox 

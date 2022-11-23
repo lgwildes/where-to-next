@@ -4,12 +4,11 @@ html,
 body,
 #react-root {
   height: 100%;
+  
 }
 
 body {
-  background-image: url("pexels-errin-casano-2356045.jpg");
-  background-size:cover ;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   margin: 0px;
 }
 
@@ -18,7 +17,13 @@ img {
   max-width: 100%;
 }
 
-
+#search-page {
+  height: 100%;
+  background-image: url("cropped-pexels-errin-casano-2356045-2.jpg");
+  background-size:cover ;
+  margin-bottom: -55px;
+  padding-bottom: 10px;
+}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -139,31 +144,16 @@ input {
 .search-header {
   display:flex;
   justify-content: center;
-  font-size: 70px;
+  font-size: 100px;
   color:  #8fa94c;
   margin-top: -10px;
-  margin-bottom: -7px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: -10px;
+  font-family: 'Sacramento', cursive;
 }
 
 .feature-chips {
   display:flex;
   justify-content: center;
-}
-
-.favorite {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  font-size: 40px;
-  margin-top: -10px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
-}
-
-.favorite > h1 {
-  margin-left: 10px
 }
 
 .search-page {
@@ -193,6 +183,7 @@ input {
   margin: 2px;
   color:#0e3b437a;
   border: none;
+  font-family: 'Quicksand', sans-serif;
   }
 /* outlined on hover */
   #feature-1>.MuiButton-outlinedPrimary:hover{
@@ -207,6 +198,7 @@ input {
     margin: 2px;
     color: #f2f2f2;
     border: none;
+    font-family: 'Quicksand', sans-serif;
   }
 /*  contained on hover */
   #feature-1>.MuiButton-containedPrimary:hover{
@@ -222,6 +214,7 @@ input {
   margin: 2px;
   color:#0e3b437a;
   border: none;
+  font-family: 'Quicksand', sans-serif;
   }
 /* outlined on hover */
   #feature-2>.MuiButton-outlinedPrimary:hover{
@@ -236,6 +229,7 @@ input {
     margin: 2px;
     color: #f2f2f2;
     border: none;
+    font-family: 'Quicksand', sans-serif;
   }
 /*  contained on hover */
   #feature-2>.MuiButton-containedPrimary:hover{
@@ -251,6 +245,7 @@ input {
   margin: 2px;
   color:#0e3b437a;
   border: none;
+  font-family: 'Quicksand', sans-serif;
   }
 /* outlined on hover */
   #feature-3>.MuiButton-outlinedPrimary:hover{
@@ -265,6 +260,7 @@ input {
     margin: 2px;
     color: #f2f2f2;
     border: none;
+    font-family: 'Quicksand', sans-serif;
   }
 /*  contained on hover */
   #feature-3>.MuiButton-containedPrimary:hover{
@@ -280,6 +276,7 @@ input {
     margin: 2px;
     color:#0e3b437a;
     border: none;
+    font-family: 'Quicksand', sans-serif;
     }
   /* outlined on hover */
     #feature-4>.MuiButton-outlinedPrimary:hover{
@@ -294,6 +291,7 @@ input {
       margin: 2px;
       color: #f2f2f2;
       border: none;
+      font-family: 'Quicksand', sans-serif;
     }
   /*  contained on hover */
     #feature-4>.MuiButton-containedPrimary:hover{
@@ -308,6 +306,7 @@ input {
       background-color: #8fa94c;
       height: 3.5em;
       font-size: 20px;
+      font-family: 'Quicksand', sans-serif;
     }
 /* international/domestic checkboxes */
     #checkbox-container{
@@ -316,5 +315,65 @@ input {
       border-radius: 5px;
       padding: 1em;
       background-color:#8fa94c;
+      
     }
 
+/* trying to change font on checkbox labels */
+    #int-dom>.css-ahj2mt-MuiTypography-root{
+      font-family: 'Quicksand', sans-serif;
+    }
+    #checkbox-label{
+      font-family: 'Quicksand', sans-serif;
+    }
+/* display area for chips of selected features */
+    .feature-chips {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      height: 80px;
+      width: 50%;
+      margin-right:auto;
+      margin-left: auto;
+
+    }
+
+/* FAVORITES PAGE  */
+
+    #favorite-header {
+      font-family: 'Sacramento', cursive;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      font-size: 50px;
+      margin-top: -10px;
+    }
+    
+    .favorite > h1 {
+      margin-left: 10px
+    }
+    
+  #favorites-card{
+    font-family: 'Quicksand', sans-serif;
+    padding: 3em
+  }
+#favorite-title{
+  margin-top: -25px;
+}
+
+#notes-head-icon{
+  display:flex;
+  align-content: center;
+  align-items:center;
+  justify-content: space-between;
+  margin-bottom: -20px;
+  margin-top: -20px;
+}
+
+/* #notes-body{
+  
+} */

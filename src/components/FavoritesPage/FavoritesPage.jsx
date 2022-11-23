@@ -35,7 +35,7 @@ function FavoritesPage() {
     dispatch({
       type: 'GET_FAVORITES',
     })
-  }, [])
+  }, [favorites])
 
 
   const style = {
@@ -55,7 +55,7 @@ function FavoritesPage() {
    
     return (
       <>
-        <div className='favorite'>
+        <div id='favorite-header'>
         <Favorite/> <h1 >my favorites </h1>
          
         </div>
@@ -67,20 +67,19 @@ function FavoritesPage() {
             return (
               <Grid2
                 key={destination.favorite_id}>
-                <Card sx={{ width: 500, height: 500, m: 2,  boxShadow: 3 }}>
+                <Card sx={{ width: 500, height: 500, m: 2,  boxShadow: 3 }}
+                  >
                   <CardMedia
                     component="img"
                     height="200"
                     image={destination.url} //TODO get photos from DB
                     alt={destination.alt_text} //TODO get alt_text from DB
                   />
-                  <Typography sx={{p:3}}>
-                  <h3>{destination.name}</h3>
+                  <Typography sx={{p:3}} id="favorites-card">
+                  <h3 id="favorite-title">{destination.name}</h3>
                   <p>{destination.description}</p>
-                  <h4>my notes</h4>
-                  <p>{destination.notes}</p> 
-                  {/* dispatch to new reducer for active favorited */}
-                  {/* <IconButton onClick={(event) => handleOpen(destination.favorite_id)} >  */}
+                  <div id="notes-head-icon">
+                  <h4 >my notes</h4>
                   <IconButton onClick={(event) => {
                      setOpen(true);
                      dispatch({
@@ -95,8 +94,42 @@ function FavoritesPage() {
                     <Edit
                     />
                   </IconButton>
+                  <IconButton
+                  onClick={() => {
+                   swal({
+                    title: "Are you sure?",
+                    text: "This destination will be removed from your favorites!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                   })
+                   .then((willDelete) => {
+                    if(willDelete) {
+                      dispatch({
+                        type:'DELETE_FAVORITE',
+                        payload: destination.favorite_id
+                      })
+                      dispatch({
+                        type: 'FETCH_FAVORITES',
+                        payload: currentUser
+                      })
+                  
+                      dispatch({
+                        type: 'GET_FAVORITES',
+                      })
+                      swal("Destination deleted!", {
+                        icon: "success",
+                      });
+                    } 
+                   });
+                  }}>
+                      <DeleteOutline
+                       />
+                  </IconButton>
+                  </div>
+                  <p id="notes-body">{destination.notes}</p> 
                   </Typography>
-                 
+                 {/* edit modal  */}
                   <Modal
                     open={open}
                     onClose={handleClose}>
@@ -138,42 +171,6 @@ function FavoritesPage() {
                       </IconButton>
                     </Box>
                   </Modal>
-
-                  {/* DELETE BUTTON */}
-                  <IconButton
-                  onClick={() => {
-                   swal({
-                    title: "Are you sure?",
-                    text: "This destination will be removed from your favorites!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                   })
-                   .then((willDelete) => {
-                    if(willDelete) {
-                      dispatch({
-                        type:'DELETE_FAVORITE',
-                        payload: destination.favorite_id
-                      })
-                      dispatch({
-                        type: 'FETCH_FAVORITES',
-                        payload: currentUser
-                      })
-                  
-                      dispatch({
-                        type: 'GET_FAVORITES',
-                      })
-                      swal("Destination deleted!", {
-                        icon: "success",
-                      });
-                    } 
-                   });
-                  }}>
-                      <DeleteOutline
-                       />
-                  </IconButton>
-
-
                 </Card>
               </Grid2>
             )

@@ -51,7 +51,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             WHERE feature_id IN(${variablePlaceholders})
             GROUP BY "destination"."id"
             ORDER BY "counted_features" DESC
-            LIMIT 5  
+            LIMIT 6  
             ;`
             // console.log('Whole world 🌐')
         } 
@@ -66,7 +66,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                 WHERE feature_id IN(${variablePlaceholders}) AND "international" = TRUE
                 GROUP BY "destination"."id"
                 ORDER BY "counted_features" DESC
-                LIMIT 5        
+                LIMIT 6        
                 ;`
                 // console.log('only international 🏴󠁧󠁢󠁥󠁮󠁧󠁿')
             }   
@@ -81,7 +81,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                     WHERE feature_id IN(${variablePlaceholders}) AND "international" = FALSE
                     GROUP BY "destination"."id"
                     ORDER BY "counted_features" DESC
-                    LIMIT 5
+                    LIMIT 6
                     ;`
                     // console.log('AMERICA 🗽')
                 }

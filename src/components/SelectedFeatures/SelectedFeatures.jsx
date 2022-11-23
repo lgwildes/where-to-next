@@ -8,15 +8,6 @@ function SelectedFeatures() {
     const selectedFeatures = useSelector(store => store.addFeatureReducer)
     const features = useSelector(store => store.featureReducer)
     
-    selectedFeatures.map(selected => {
-        features.map( feature => {
-            if(selected === feature ) {
-
-            }
-        })
-    })
-
-  
 
     if(selectedFeatures) {
         return (
