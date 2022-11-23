@@ -3,10 +3,11 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import Grid2 from '@mui/material/Unstable_Grid2'; 
 import Button from '@mui/material/Button';
-import { FavoriteBorder, FavoriteBorderOutlined, Favorite, FavoriteIcon } from '@mui/icons-material';
+import { FavoriteBorder, FavoriteBorderOutlined, Favorite, FavoriteIcon, Diversity1TwoTone } from '@mui/icons-material';
 import { IconButton, Chip } from '@mui/material';
 
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
@@ -64,8 +65,8 @@ function ResultsPage() {
     if(results) {
 
         return (
-            <>
-           <h2>the results are in...</h2>
+        <div id="results-page">
+           <h2 id="result-header">the results are in...</h2>
 
             <Grid2 container spacing={2} m={2}
                     alignItems="center"
@@ -74,35 +75,48 @@ function ResultsPage() {
                     return(
                         <Grid2 
                         key={destination.id}> 
-                            <Card sx={{width:500, height:400, m:2, boxShadow:3}}
+                            <Card sx={{width:500, height:500, m:2, boxShadow:3}}
                                 >
+                                
                                 <CardMedia
                                     component="img"
-                                    height="120"
-                                    image={destination.url} //TODO get photos from DB
-                                    alt={destination.alt_text} //TODO get alt_text from DB
+                                    height="200"
+                                    image={destination.url} 
+                                    alt={destination.alt_text} 
                                     />
+                                <CardContent>
+                                <Typography>
                                     <h3>{destination.name}</h3>
-                                    <h5>matching preferences</h5>
+                                    <div id="result-chips">
                                     {destination.feature_names.map( feature => {
+                                        
                                         return(
+                                           
                                             <Chip
                                             key={feature}
                                             label={feature} />
+                                          
                                         )
+                                       
                                     })}
+                                    </div>
                                     <p>{destination.description}</p>
                                     
                                     {isFavorite(destination.id) ? 
-                                            < Favorite />
+                                        <div id="filled-heart">
+                                            <Favorite />
+                                        </div>
                                         : 
+                                        <div id="outlined-heart">
                                         <IconButton 
                                         onClick={(event) => {
                                             addFavorite(destination.id)}}>
                                             <FavoriteBorder /> 
                                         </IconButton>
+                                        </div>
                                      }
-                                   
+                                     </Typography>
+                                 </CardContent>  
                             </Card>
                         </Grid2>
                     )
@@ -110,7 +124,7 @@ function ResultsPage() {
 
                 })}
              </Grid2>
-            </>
+            </div>
             
         
         )

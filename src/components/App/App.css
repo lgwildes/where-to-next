@@ -179,7 +179,7 @@ input {
 /* GROUP 1 */
 /* outlined primary */
 #feature-1>.MuiButton-outlinedPrimary{
-  background-color: #f2f2f2;
+  background-color: white;
   margin: 2px;
   color:#0e3b437a;
   border: none;
@@ -189,14 +189,14 @@ input {
   #feature-1>.MuiButton-outlinedPrimary:hover{
     background-color: #71a3308a;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     }
 /*  contained on click */
   #feature-1>.MuiButton-containedPrimary{
     background-color:#75B9BE;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     font-family: 'Quicksand', sans-serif;
   }
@@ -204,13 +204,13 @@ input {
   #feature-1>.MuiButton-containedPrimary:hover{
     background-color:  #8fa94c;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
   }
 
 /* GROUP 2 */
 #feature-2>.MuiButton-outlinedPrimary{
-  background-color: #f2f2f2;
+  background-color: white;
   margin: 2px;
   color:#0e3b437a;
   border: none;
@@ -220,14 +220,14 @@ input {
   #feature-2>.MuiButton-outlinedPrimary:hover{
     background-color: #71a3308a;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     }
 /*  contained on click */
   #feature-2>.MuiButton-containedPrimary{
     background-color:#75B9BE;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     font-family: 'Quicksand', sans-serif;
   }
@@ -235,13 +235,13 @@ input {
   #feature-2>.MuiButton-containedPrimary:hover{
     background-color: #8fa94c;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
   }
 
 /* GROUP 3 */
 #feature-3>.MuiButton-outlinedPrimary{
-  background-color: #f2f2f2;
+  background-color: white;
   margin: 2px;
   color:#0e3b437a;
   border: none;
@@ -251,14 +251,14 @@ input {
   #feature-3>.MuiButton-outlinedPrimary:hover{
     background-color: #71a3308a;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     }
 /*  contained on click */
   #feature-3>.MuiButton-containedPrimary{
     background-color:#75B9BE;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
     font-family: 'Quicksand', sans-serif;
   }
@@ -266,13 +266,13 @@ input {
   #feature-3>.MuiButton-containedPrimary:hover{
     background-color: #8fa94c;
     margin: 2px;
-    color: #f2f2f2;
+    color: white;
     border: none;
   }
 
   /* GROUP 4 */
   #feature-4>.MuiButton-outlinedPrimary{
-    background-color: #f2f2f2;
+    background-color: white;
     margin: 2px;
     color:#0e3b437a;
     border: none;
@@ -282,14 +282,14 @@ input {
     #feature-4>.MuiButton-outlinedPrimary:hover{
       background-color: #71a3308a;
       margin: 2px;
-      color: #f2f2f2;
+      color: white;
       border: none;
       }
   /*  contained on click */
     #feature-4>.MuiButton-containedPrimary{
       background-color:#75B9BE;
       margin: 2px;
-      color: #f2f2f2;
+      color: white;
       border: none;
       font-family: 'Quicksand', sans-serif;
     }
@@ -297,7 +297,7 @@ input {
     #feature-4>.MuiButton-containedPrimary:hover{
       background-color: #8fa94c;
       margin: 2px;
-      color: #f2f2f2;
+      color: white;
       border: none;
     }
 
@@ -310,7 +310,7 @@ input {
     }
 /* international/domestic checkboxes */
     #checkbox-container{
-      color:#f2f2f2;
+      color:white;
       border: none;
       border-radius: 5px;
       padding: 1em;
@@ -343,14 +343,20 @@ input {
 
 /* FAVORITES PAGE  */
 
+#favorites-page{
+  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-alex-azabache-3757144.jpg") ;
+  background-size: cover;
+}
+
     #favorite-header {
       font-family: 'Sacramento', cursive;
+      color:#8fa94c;
       display:flex;
       justify-content: center;
       align-items: center;
       align-content: center;
       font-size: 50px;
-      margin-top: -10px;
+      margin-top: 10px;
     }
     
     .favorite > h1 {
@@ -359,10 +365,10 @@ input {
     
   #favorites-card{
     font-family: 'Quicksand', sans-serif;
-    padding: 3em
+    
   }
 #favorite-title{
-  margin-top: -25px;
+  margin-top: -15px;
 }
 
 #notes-head-icon{
@@ -374,6 +380,41 @@ input {
   margin-top: -20px;
 }
 
-/* #notes-body{
-  
-} */
+/* RESULTS PAGE */
+
+#results-page{
+  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
+  background-size: cover;
+}
+
+#result-header{
+  display:flex;
+  justify-content: center;
+  font-size: 80px;
+  color:  white;
+  margin-top: -10px;
+  margin-bottom: 0px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight:300;
+}
+
+#filled-heart{
+  /* display:flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+}
+
+#outlined-heart{
+  display:flex;
+}
+
+#result-chips{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+ 
+}
+
+#result-chips>.MuiChip-sizeMedium{
+  margin: 2px;
+}

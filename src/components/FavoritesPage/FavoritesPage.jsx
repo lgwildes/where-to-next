@@ -32,9 +32,9 @@ function FavoritesPage() {
       payload: currentUser
     })
 
-    dispatch({
-      type: 'GET_FAVORITES',
-    })
+    // dispatch({
+    //   type: 'GET_FAVORITES',
+    // })
   }, [favorites])
 
 
@@ -54,7 +54,7 @@ function FavoritesPage() {
   if (favorites) {
    
     return (
-      <>
+      <div id="favorites-page">
         <div id='favorite-header'>
         <Favorite/> <h1 >my favorites </h1>
          
@@ -69,14 +69,17 @@ function FavoritesPage() {
                 key={destination.favorite_id}>
                 <Card sx={{ width: 500, height: 500, m: 2,  boxShadow: 3 }}
                   >
+                 
                   <CardMedia
                     component="img"
                     height="200"
                     image={destination.url} //TODO get photos from DB
                     alt={destination.alt_text} //TODO get alt_text from DB
                   />
+                   <CardContent>
                   <Typography sx={{p:3}} id="favorites-card">
                   <h3 id="favorite-title">{destination.name}</h3>
+                 {/* INSERT DESTINATION ID CHIPS HERE */}
                   <p>{destination.description}</p>
                   <div id="notes-head-icon">
                   <h4 >my notes</h4>
@@ -129,10 +132,11 @@ function FavoritesPage() {
                   </div>
                   <p id="notes-body">{destination.notes}</p> 
                   </Typography>
-                 {/* edit modal  */}
+                 {/* edit modal ⬇️ */}
                   <Modal
                     open={open}
-                    onClose={handleClose}>
+                    onClose={handleClose}
+                    >
                     <Box sx={style}>
                       <TextField
                         value={activeFavorite.notes}//THIS IS NULL IF NO NOTE AND IS AN ISSUE
@@ -171,6 +175,7 @@ function FavoritesPage() {
                       </IconButton>
                     </Box>
                   </Modal>
+                  </CardContent>
                 </Card>
               </Grid2>
             )
@@ -179,7 +184,7 @@ function FavoritesPage() {
 
         </Grid2>
 
-      </>
+      </div>
     );
   }
   else if (!favorites) {
