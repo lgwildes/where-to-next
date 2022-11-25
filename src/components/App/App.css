@@ -397,12 +397,12 @@ input {
   font-family: 'Quicksand', sans-serif;
   font-weight:300;
 }
-
+/* 
 #filled-heart{
   /* display:flex;
   flex-direction: column;
-  justify-content: flex-start; */
-}
+  justify-content: flex-start; 
+} */
 
 #outlined-heart{
   display:flex;
