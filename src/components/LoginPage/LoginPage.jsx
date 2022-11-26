@@ -2,13 +2,17 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
+
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+   
+    <div id='login-page'>
+      <h1 id='login-header'>...let's dream!</h1>
+      <div id='login-form'>
       <LoginForm />
-
+      </div>
       <center>
         <button
           type="button"
@@ -21,6 +25,7 @@ function LoginPage() {
         </button>
       </center>
     </div>
+   
   );
 }
 

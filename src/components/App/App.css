@@ -75,16 +75,19 @@ Button
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
-  border-radius: 0;
-  background: none;
+  border-radius: 5px;
+  background: #0e3b438c;
+  padding: 5px;
   font: inherit;
-  color: #444;
+  color:rgb(255, 255, 255);
 }
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color:#8fa94c;
+  color:#8fa94c;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
 }
 
 /* --------------------------------------------------------------------------------
@@ -107,19 +110,23 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: flex-start;
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
-  padding: 25px;
+  padding: 35px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: white;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
 
 input {
   margin: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 
@@ -417,4 +424,44 @@ input {
 
 #result-chips>.MuiChip-sizeMedium{
   margin: 2px;
+}
+
+/*  REGISTSER PAGE */
+#login-page {
+  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
+  background-size: cover;
+  height: 1000px;
+  margin-top: -10px;
+}
+
+#login-header {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ margin-top: -10px;
+ line-height: 2em;
+ font-family: 'Sacramento', cursive; 
+ font-size: 100px;
+ color: white;
+
+}
+
+#login-form {
+  margin-top: 60px;
+
+}
+
+#login-btn{
+  background-color:#75B9BE;
+  margin: 2px;
+  color: white;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#login-btn:hover{
+  background-color: #8fa94c;
+  margin: 2px;
+  color: white;
+  border: none;
 }
