@@ -8,6 +8,7 @@ function RegisterPage() {
 
   return (
     <div id='register-page'>
+      <h1 id='register-header'>let's dream!</h1>
       <RegisterForm />
 
       <center>

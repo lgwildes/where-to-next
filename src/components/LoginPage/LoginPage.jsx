@@ -9,7 +9,7 @@ function LoginPage() {
   return (
    
     <div id='login-page'>
-      <h1 id='login-header'>...let's dream!</h1>
+      <h1 id='login-header'>let's dream!</h1>
       <div id='login-form'>
       <LoginForm />
       </div>

@@ -65,7 +65,8 @@ function FavoritesPage() {
           
           {favorites.map(destination => {
             return (
-              <Grid2
+              <Grid2 
+                id="favorite-grid"
                 key={destination.favorite_id}>
                 <Card sx={{ width: 500, height: 500, m: 2,  boxShadow: 3 }}
                   >
