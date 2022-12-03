@@ -74,7 +74,8 @@ function ResultsPage() {
                 {results.map(destination => {
                     return(
                         <Grid2 
-                        key={destination.id}> 
+                        key={destination.id}
+                        id="results-card"> 
                             <Card sx={{width:500, height:500, m:2, boxShadow:3}}
                                 >
                                 
@@ -85,7 +86,7 @@ function ResultsPage() {
                                     alt={destination.alt_text} 
                                     />
                                 <CardContent>
-                                <Typography>
+                                <div>
                                     <h3>{destination.name}</h3>
                                     <div id="result-chips">
                                     {destination.feature_names.map( feature => {
@@ -115,7 +116,7 @@ function ResultsPage() {
                                         </IconButton>
                                         </div>
                                      }
-                                     </Typography>
+                                     </div>
                                  </CardContent>  
                             </Card>
                         </Grid2>

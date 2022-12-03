@@ -398,6 +398,7 @@ input {
 #results-page{
   background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
   background-size: cover;
+  
 }
 
 #result-header{
@@ -410,6 +411,13 @@ input {
   font-family: 'Quicksand', sans-serif;
   font-weight:300;
 }
+
+#results-card{
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+
 /* 
 #filled-heart{
   /* display:flex;
