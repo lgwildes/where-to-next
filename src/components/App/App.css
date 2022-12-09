@@ -351,7 +351,7 @@ input {
 /* FAVORITES PAGE  */
 
 #favorites-page{
-  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-alex-azabache-3757144.jpg") ;
+  background-image: url("pexels-alex-azabache-3757144.jpg") ;
   background-size: cover;
   margin-top: -10px;
   margin-bottom: -71px;
@@ -396,7 +396,7 @@ input {
 /* RESULTS PAGE */
 
 #results-page{
-  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
+  background-image: url("./pexels-francesco-ungaro-2325446.jpg");
   background-size: cover;
   
 }
@@ -442,7 +442,7 @@ input {
 
 /*  LOGIN PAGE */
 #login-page {
-  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
+  background-image: url("pexels-francesco-ungaro-2325446.jpg");
   background-size: cover;
   height: 1000px;
   margin-top: -10px;
@@ -483,7 +483,7 @@ input {
 /* REGISTER PAGE */
 
 #register-page{
-  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-francesco-ungaro-2325446.jpg");
+  background-image: url("pexels-francesco-ungaro-2325446.jpg");
   background-size: cover;
   height: 1000px;
   margin-top: -10px;
@@ -519,7 +519,7 @@ input {
 /* ABOUT PAGE */
 
 #about-page{
-  background-image: url("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/App/pexels-gabriela-palai-507410.jpg");
+  background-image: url("pexels-gabriela-palai-507410.jpg");
   background-size: cover;
   height: 1000px;
   margin-top: -10px;
