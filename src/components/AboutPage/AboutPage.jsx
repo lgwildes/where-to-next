@@ -78,7 +78,7 @@ function AboutPage() {
               <CardMedia
                 id="linkedin-icon"
                 component="img"
-                image={require("./AboutPage/GitHub icon.png")}
+                image={require("./GitHub icon.png")}
               />
             </div>
             <div id='social-handles'>
