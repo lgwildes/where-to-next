@@ -66,7 +66,7 @@ function AboutPage() {
               </Typography>
               <CardMedia
                 component="img"
-                image={require("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/AboutPage/Headshot small resolution.jpeg")}
+                image={require("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/AboutPage/Headshot-sm-resolution.jpeg")}
               />
             </div>
             <div id="social-icons">
