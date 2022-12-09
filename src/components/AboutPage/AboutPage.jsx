@@ -66,19 +66,19 @@ function AboutPage() {
               </Typography>
               <CardMedia
                 component="img"
-                image={require("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/AboutPage/Headshot-sm-resolution.jpeg")}
+                image={require("./Headshot-sm-resolution.jpeg")}
               />
             </div>
             <div id="social-icons">
               <CardMedia
                 id="linkedin-icon"
                 component="img"
-                image={require("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/AboutPage/A37EB04E-8BED-4E63-AF1E-50D7847FC6F7_4_5005_c.jpeg")}
+                image={require("./A37EB04E-8BED-4E63-AF1E-50D7847FC6F7_4_5005_c.jpeg")}
               />
               <CardMedia
                 id="linkedin-icon"
                 component="img"
-                image={require("/Users/lydiawildes/Documents/Prime/prime-tier3/where-to-next/src/components/AboutPage/GitHub icon.png")}
+                image={require("./AboutPage/GitHub icon.png")}
               />
             </div>
             <div id='social-handles'>
