@@ -5,14 +5,14 @@ function ChipArray({ feature }) {
     const selectedFeatures = useSelector(store => store.addFeatureReducer)
 
     const dispatch = useDispatch();
+    //on click of chip delete from selected feature array
     const handleDelete = () => {
        dispatch({
         type: 'REMOVE_FEATURE',
         payload: feature.id
        })
     }
-
- console.log('👁️👄👁️feature is', feature)
+    //selected features display as chips
     return(
         <Chip 
             key={feature.id}
@@ -20,7 +20,6 @@ function ChipArray({ feature }) {
             value={feature.id}
             variant="outlined"
             onDelete={handleDelete}
-            //onDelete={(event) => handleDelete(event.target.value)}
         />
     )
 }
