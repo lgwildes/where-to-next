@@ -102,7 +102,8 @@ function ResultsPage() {
                                     })}
                                     </div>
                                     <p>{destination.description}</p>
-                                    
+
+                                    {/* conditionally render filled/outlined heart if favorited */}
                                     {isFavorite(destination.id) ? 
                                         <div id="filled-heart">
                                             <Favorite />
@@ -110,7 +111,7 @@ function ResultsPage() {
                                         : 
                                         <div id="outlined-heart">
                                         <IconButton 
-                                        onClick={(event) => {
+                                            onClick={(event) => {
                                             addFavorite(destination.id)}}>
                                             <FavoriteBorder /> 
                                         </IconButton>
